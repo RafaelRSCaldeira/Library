@@ -10,11 +10,20 @@ class InputNone(InputInterface):
         return None
 
 class InputTerminal(InputInterface):
-    def get(self):
-        return input()
+    def get(self, message=""):
+        return input(message)
+    
+    def getInteger(self, message="") -> None | int:
+        userInput = input(message)
+        try:
+            userInput = int(userInput)
+            return userInput
+        except ValueError:
+            return None
 
 class InputFactory():
     @staticmethod
     def create(type: str) -> InputInterface:
         if type == "terminal":
             return InputTerminal()
+        return InputNone()

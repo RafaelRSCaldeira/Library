@@ -1,5 +1,6 @@
 from User import *
 from Book import *
+import re
 
 
 class Undo():
@@ -7,19 +8,20 @@ class Undo():
         self.userManager = UserManager()
         self.bookManager = BookManager()
 
-    '''@staticmethod
+    @staticmethod
     def undo(self, userID: int) -> str:
         user = self.userManager.search(userID)
         lastMessage = user.history.pop()
         last = lastMessage[:10]
+        bookISBN = re.search("^.*ISBN:(.*)//", lastMessage).group(1).strip()
+        book = self.bookManager.search(bookISBN)
         if last == "Empréstimo":
-            bookISBN = 
-            return Undo.loan(userID, bookISBN, book)
+            return Undo.loan(userID, book)
         if last == "Devolução ":
-            return Undo.devolution(userID, bookISBN, book)
+            return Undo.devolution(userID, book)
         if last == "Reserva de":
-            return Undo.reserve(userID, bookISBN, book)
-        return "Mensagem não reconhecida"'''
+            return Undo.reserve(userID, book)
+        return "Mensagem não reconhecida"
 
     @staticmethod
     def loan(userID: int, book: Book) -> str:

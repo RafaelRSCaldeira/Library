@@ -33,6 +33,8 @@ class Library():
     
     def returnBook(self, bookISBN: str) -> str:
         if self.bookManager.has(bookISBN):
+            if self.bookManager.isAvailable(bookISBN):
+                return "O livro não foi emprestado"
             book = self.bookManager.search(bookISBN)
             userID = book.usersQueue.dequeue()
             message = f"Devolução de livro - ISBN: {book.ISBN} // Título: {book.title}"
@@ -51,8 +53,9 @@ class Library():
             return "Usuário não encontrado"
         return "Livro não encontrado"
 
-    def showHistory(self, userID: int) -> None:
+    def showHistory(self, userID: int) -> str:
         self.userManager.showHistory(userID)
+        return "Histórico exibido com sucesso"
     
     def undoHistory(self, userID: int) -> str:
         return self.userManager.undoHistory(userID)

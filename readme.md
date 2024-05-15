@@ -27,3 +27,7 @@ O sistema deve permitir o cadastro de livros e usuários, controle de empréstim
 - Registrar a operação no histórico do usuário.
 6. Histórico e Reversão de Operações:
 - Permitir que usuários desfaçam a última operação realizada (seja empréstimo, devolução ou reserva).
+
+**Análise Complexidade Assintótica**
+Todos os métodos implementados possuem O(1), exceto os listados abaixo:
+- UserManager.showHistory -> O(n), em que n é o número de entradas no histórico do usuário

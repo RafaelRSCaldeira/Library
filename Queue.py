@@ -2,6 +2,9 @@ class Queue():
     def __init__(self) -> None:
         self.queue = list()
     
+    def __len__(self) -> int:
+        return len(self.queue)
+    
     def enqueue(self, item) -> None:
         self.queue.append(item)
     

@@ -1,5 +1,7 @@
-from User import UserManager
-from Book import BookManager
+from UserManager import UserManager
+from User import User
+from BookManager import BookManager
+from Book import Book
 
 class Library():
     def __init__(self) -> None:
@@ -9,10 +11,12 @@ class Library():
     def registerUser(self, name: str) -> str:
         user = self.userManager.create(name)
         self.userManager.register(user)
+        return "Usuário cadastrado com sucesso"
 
     def registerBook(self, ISBN: str, title: str, author: str) -> str:
         book = self.bookManager.create(ISBN, title, author)
         self.bookManager.register(book)
+        return "Livro cadastrado com sucesso"
     
     def loanBook(self, userID: int, bookISBN: str) -> str:
         if self.userManager.has(userID):
@@ -54,8 +58,7 @@ class Library():
         return "Livro não encontrado"
 
     def showHistory(self, userID: int) -> str:
-        self.userManager.showHistory(userID)
-        return "Histórico exibido com sucesso"
+        return self.userManager.showHistory(userID)
     
     def undoHistory(self, userID: int) -> str:
-        return self.userManager.undoHistory(userID)
+        return self.userManager.undoHistory(userID, self.userManager.users, self.bookManager.books)

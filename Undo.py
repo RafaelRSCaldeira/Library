@@ -1,20 +1,20 @@
-from User import *
-from Book import *
+from UserManagerWithoutUndo import UserManagerWithoutUndo
+from User import User
+from Book import Book
+from BookManager import BookManager
 import re
 
 
 class Undo():
-    def __init__(self):
-        self.userManager = UserManager()
-        self.bookManager = BookManager()
-
     @staticmethod
-    def undo(self, userID: int) -> str:
-        user = self.userManager.search(userID)
+    def undo(userID: int, users: dict, books: dict) -> str:
+        userManager = UserManagerWithoutUndo(users)
+        bookManager = BookManager(books)
+        user = userManager.search(userID)
         lastMessage = user.history.pop()
         last = lastMessage[:10]
         bookISBN = re.search("^.*ISBN:(.*)//", lastMessage).group(1).strip()
-        book = self.bookManager.search(bookISBN)
+        book = bookManager.search(bookISBN)
         if last == "Empréstimo":
             return Undo.loan(userID, book)
         if last == "Devolução ":

@@ -5,23 +5,34 @@ class Interface():
     def __init__(self, inputType="terminal"):
         self.input = InputFactory.create(inputType)
         self.library = Library()
+        print("Biblioteca inicializada...")
+
+    def run(self) -> None:
+        while True:
+            self.showMenu()
+            option = self.getOption()
+            if option is None:
+                print("Valor inválido")
+                continue
+            if option == 0:
+                break
+            print(self.doOption(option))
+        print("Encerrando atividades...")
     
     def showMenu(self) -> None:
-        menu = '''Opções:\n\
+        menu = '''\nOpções:\n\
             (1) Adicionar usuário\n\
             (2) Adicionar livro\n\
             (3) Empréstimo de livro\n\
             (4) Devolução de livro\n\
             (5) Reserva de livro\n\
             (6) Revisar histórico de operações\n\
-            (7) Desfazer operação'''
+            (7) Desfazer operação\n\
+            Aperte 0 para sair...\n'''
         print(menu)
     
-    def getOption(self) -> None | str:
-        option = self.input.getInteger("Escolha a opção desejada: ")
-        if option is None:
-            return "Valor inválido"
-        self.doOption(option)
+    def getOption(self) -> int | str:
+        return self.input.getInteger("Escolha a opção desejada: ")
     
     def doOption(self, option: int) -> str:
         if option == 1:

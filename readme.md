@@ -2,9 +2,11 @@
 
 **Objetivo:**
 Desenvolver um sistema de gerenciamento de biblioteca utilizando tipos abstratos de dados (ADTs) como pilhas, filas, listas e mapas para realizar operações de empréstimo, devolução, reserva de livros e gerenciamento de usuários.
-Descrição:
+
+**Descrição:**
 O sistema deve permitir o cadastro de livros e usuários, controle de empréstimos, devoluções, reservas de livros e manutenção de um histórico de operações que possa ser revertido. Os dados devem ser gerenciados de forma eficiente utilizando os ADTs apropriados para cada tipo de operação.
-Requisitos Funcionais:
+
+**Requisitos Funcionais:**
 1. Cadastro de Usuários:
 - Armazenar as informações dos usuários, como ID, nome e histórico de empréstimos.
 - Cada usuário deve ter um histórico de suas operações.
